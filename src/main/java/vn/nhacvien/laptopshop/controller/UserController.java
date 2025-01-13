@@ -1,5 +1,7 @@
 package vn.nhacvien.laptopshop.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +22,9 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
+        List<User> arrUsers = this.userService.getAllUsersByEmail("dovietduy193@gmail.com");
+        System.out.println(arrUsers);
+
         model.addAttribute("duy", "test");
         model.addAttribute("anhduy", "from controller with model");
         return "hello";
@@ -27,11 +32,16 @@ public class UserController {
 
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
+        return "admin/user/table-user";
+    }
+
+    @RequestMapping("/admin/user/create") // GET
+    public String getUserCreatePage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
 
-    @RequestMapping(value = "/admin/user/create1", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User anhduy93) {
         System.out.println("run here" + anhduy93);
         this.userService.handleSaveUser(anhduy93);
