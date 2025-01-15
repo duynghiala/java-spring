@@ -27,9 +27,13 @@
                             <div class="alert alert-danger">
                                 Are you sure to delete this user ?
                             </div>
-                            <form>
+                            <form:form method="post" action="/admin/user/delete" modelAttribute="newUser">
+                                <div class="mb-3" style="display: none">
+                                    <label class="form-label">Id: </label>
+                                    <form:input value="${id}" path="id" type="text" class="form-control" />
+                                </div>
                                 <button class="btn btn-danger">Confirm</button>
-                            </form>
+                            </form:form>
 
                         </div>
                     </div>
