@@ -35,24 +35,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td><button type="button" class="btn btn-success">View</button>
-                                            <button type="button" class="btn btn-warning mx-2">Update</button>
-                                            <button type="button" class="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td><button type="button" class="btn btn-success">View</button>
-                                            <button type="button" class="btn btn-warning mx-2">Update</button>
-                                            <button type="button" class="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="user" items="${users1}">
+                                        <tr>
+                                            <th>${user.id}</th>
+                                            <td>${user.email}</td>
+                                            <td>${user.fullName}</td>
+                                            <td>
+                                                <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
+                                                <a href="/admin/user/update/${user.id}"
+                                                    class="btn btn-warning mx-2">Update</a>
+                                                <a href="/admin/user/delete/${user.id}"
+                                                    class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
+
                                 </tbody>
                             </table>
                         </div>
